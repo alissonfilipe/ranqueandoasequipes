@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ranqueamento das equipes</title>
+    <script src="exec.js"></script>
+    <link rel="stylesheet" href="estilizacao.css">
+    <script>
+        // Define a variável global estadoOrdenacao como "ascendente"
+var estadoOrdenacao = "ascendente";
+
+// Define a função ordenarTabela com o parâmetro coluna
+function ordenarTabela(coluna) {
+// Define as variáveis tabela, linhas, troca, i, x e y
+var tabela, linhas, troca, i, x, y;
+// Obtém a tabela pelo ID
+tabela = document.getElementById("tabela");
+// Define a variável troca como verdadeira
+troca = true;
+// Cria um loop while enquanto troca for verdadeiro
+while (troca) {
+// Define a variável troca como falsa
+troca = false;
+// Obtém todas as linhas da tabela
+linhas = tabela.rows;
+// Cria um loop for para percorrer todas as linhas, exceto a primeira e a última
+for (i = 1; i < (linhas.length - 1); i++) {
+// Obtém o conteúdo da célula da coluna especificada na linha atual e na próxima linha
+x = linhas[i].getElementsByTagName("td")[coluna];
+y = linhas[i + 1].getElementsByTagName("td")[coluna];
+// Verifica se o estado da ordenação é "ascendente"
+if (estadoOrdenacao == "ascendente") {
+// Compara o conteúdo das células e, se o conteúdo da célula atual for maior que o da próxima célula, troca as linhas
+if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+linhas[i].parentNode.insertBefore(linhas[i + 1], linhas[i]);
+troca = true;
+// Sai do loop for atual
+break;
+}
+}
+// Se o estado da ordenação for "descendente"
+else if (estadoOrdenacao == "descendente") {
+// Compara o conteúdo das células e, se o conteúdo da célula atual for menor que o da próxima célula, troca as linhas
+if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+linhas[i].parentNode.insertBefore(linhas[i + 1], linhas[i]);
+troca = true;
+// Sai do loop for atual
+break;
+}
+}
+}
+}
+// Inverte o estado da ordenação depois que as linhas foram ordenadas
+if (estadoOrdenacao == "ascendente") {
+estadoOrdenacao = "descendente";
+} else {
+estadoOrdenacao = "ascendente";
+}
+}
+    </script>
+</head>
+<body>
+    <h1>Ranqueamento das equipes</h1>
+    <label for="search">Pesquisar Equipe:</label>
+    <input type="text" id="search" onkeyup="filterTable()" placeholder="Digite o nome da equipe...">
+    <table id="tabela">
+        
+        <tbody>
+            <tr>
+                <th onclick="ordenarTabela(0)">Posição</th>
+                <th onclick="ordenarTabela(1)">Logotipo</th>
+                <th onclick="ordenarTabela(2)">Equipe</th>
+                <th onclick="ordenarTabela(3)">Turma</th>
+                <th onclick="ordenarTabela(4)">Pontuação</th>
+                <th onclick="ordenarTabela(5)">Nota do boletim</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td><img src="ThreeCoders.png" alt="ThreeCoders" class="logo"></td>
+                <td>ThreeCoders</td>
+                <td>3° ano A</td>
+                <td>13</td>
+                <td>4</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td><img src="Vikings.png" alt="Vikings" class="logo"></td>
+                <td>Vikings</td>
+                <td>3° ano A</td>
+                <td>12</td>
+                <td>3.69</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td><img src="flasco.png" alt="flasco" class="logo"></td>
+                <td>União Flasco</td>
+                <td>3° ano B</td>
+                <td>10</td>
+                <td>3.08</td>
+            </tr>
+
+            <tr>
+                <td>4</td>
+                <td><img src="the_makers.png" alt="Makers" class="logo"></td>
+                <td>The makers</td>
+                <td>3° ano B</td>
+                <td>7</td>
+                <td>2.15</td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td><img src="RESISTECH.jpg" alt="Resistech" class="logo"></td>
+                <td>RESISTECH</td>
+                <td>TADS</td>
+                <td>7</td>
+                <td>2.15</td>
+            </tr>
+
+            <tr>
+                <td>6</td>
+                <td><img src="Orcaca.png" alt="Orcaca" class="logo"></td>
+                <td>Orcaca</td>
+                <td>TADS</td>
+                <td>6</td>
+                <td>1.85</td>
+            </tr>
+
+            <tr>
+                <td>7</td>
+                <td><img src="Lovelace.png" alt="Lovelace" class="logo"></td>
+                <td>Lovelace</td>
+                <td>TADS</td>
+                <td>5</td>
+                <td>1.54</td>
+            </tr>
+
+            <tr>
+                <td>8</td>
+                <td><img src="Autarquia.png" alt="Autarquia" class="logo"></td>
+                <td>Autarquia</td>
+                <td>3° ano A</td>
+                <td>5</td>
+                <td>1.54</td>
+            </tr>
+
+            <tr>
+                <td>9</td>
+                <td><img src="SLR.png" alt="SLR" class="logo"></td>
+                <td>SLR</td>
+                <td>TADS</td>
+                <td>4</td>
+                <td>1.23</td>
+            </tr>
+
+            <tr>
+                <td>10</td>
+                <td><img src="NetForce.png" alt="NetForce" class="logo"></td>
+                <td>NetForce</td>
+                <td>TADS</td>
+                <td>4</td>
+                <td>0.92</td>
+            </tr>
+
+            <tr>
+                <td>11</td>
+                <td><img src="FIX.jpg" alt="Fix" class="logo"></td>
+                <td>FIX</td>
+                <td>3° ano B</td>
+                <td>3</td>
+                <td>0.92</td>
+            </tr>
+
+            <tr>
+                <td>12</td>
+                <td><img src="Elektras.png" alt="Elektras" class="logo"></td>
+                <td>Elektras</td>
+                <td>3° ano A</td>
+                <td>3</td>
+                <td>0.92</td>
+            </tr>
+
+            <tr>
+                <td>13</td>
+                <td><img src="Fenix.png" alt="Fenix" class="logo"></td>
+                <td>Fenix</td>
+                <td>3° ano B</td>
+                <td>2</td>
+                <td>0.62</td>
+            </tr>
+
+            <tr>
+                <td>14</td>
+                <td><img src="Valkyrie.png" alt="Valkyrie" class="logo"></td>
+                <td>Valkyrie</td>
+                <td>3° ano A</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>15</td>
+                <td><img src="Medusas.png" alt="Medusas" class="logo"></td>
+                <td>Medusas</td>
+                <td>3° ano B</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>16</td>
+                <td><img src="as_negrinhas.jpg" alt="As negrinhas" class="logo"></td>
+                <td>as negritas</td>
+                <td>3° ano B</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>17</td>
+                <td><img src="Filhos_de_Odin.png" alt="Filhos de Odin" class="logo"></td>
+                <td>Filhos de Odin</td>
+                <td>3° ano B</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>18</td>
+                <td><img src="Elite_Ateniana.png" alt="elite Ateniana" class="logo"></td>
+                <td>Elite ateniana</td>
+                <td>3° ano B</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>19</td>
+                <td><img src="olhos_do_futuro.png" alt="Olhos do futuro" class="logo"></td>
+                <td>Olhos do futuro</td>
+                <td>3° ano B</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>20</td>
+                <td><img src="Coded_Ladies.png" alt="Coded Ladies" class="logo"></td>
+                <td>Coded Ladies</td>
+                <td>3° ano A</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>21</td>
+                <td><img src="Phytomancers.png" alt="Phytomancers" class="logo"></td>
+                <td>Phytomancers</td>
+                <td>TADS</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>22</td>
+                <td><img src="Pro-Dog-IA.png" alt="Pro Dog IA" class="logo"></td>
+                <td>Pro Dog IA</td>
+                <td>TADS</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>23</td>
+                <td><img src="Cyber_Warriors.png" alt="Cyber Warriors" class="logo"></td>
+                <td>Cyber Warriors</td>
+                <td>TADS</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>24</td>
+                <td><img src="InfoEletric.png" alt="InfoEletric" class="logo"></td>
+                <td>InfoEletric</td>
+                <td>TADS</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>25</td>
+                <td><img src="Dark.png" alt="Dark" class="logo"></td>
+                <td>Dark</td>
+                <td>TADS</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>26</td>
+                <td><img src="GODDESSES.png" alt="GODDESSES" class="logo"></td>
+                <td>GODDESSES</td>
+                <td>3° ano A</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>27</td>
+                <td><img src="ABY.png" alt="ABY" class="logo"></td>
+                <td>ABY</td>
+                <td>3° ano A</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>28</td>
+                <td><img src="mosqueteiras.png" alt="As três mosqueteiras" class="logo"></td>
+                <td>mosqueteiras</td>
+                <td>3° ano A</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>29</td>
+                <td><img src="sayajins.png" alt="Sayajins" class="logo"></td>
+                <td>Sayajins</td>
+                <td>TADS</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>30</td>
+                <td><img src="alfa.png" alt="Alfa" class="logo"></td>
+                <td>alfa</td>
+                <td>3° ano B</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>31</td>
+                <td><img src="alfa_tech.png" alt="Alfa Tech" class="logo"></td>
+                <td>alfa tech</td>
+                <td>3° ano B</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+            <tr>
+                <td>32</td>
+                <td><img src="pastel_de_flango.png" alt="Pastel de frango" class="logo"></td>
+                <td>pastel de flango</td>
+                <td>3° ano A</td>
+                <td>1</td>
+                <td>0.31</td>
+            </tr>
+
+    
+
+           
+
+        </tbody>
+    </table>
+    
+</body>
+</html>
